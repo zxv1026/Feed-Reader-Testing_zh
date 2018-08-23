@@ -48,6 +48,7 @@ $(function() {
     /* TODO: 写一个叫做 "The menu" 的测试用例 */
     describe('The menu',function () {
         var body = $('body');
+        var menuIconLink = $('.menu-icon-link');
         /* TODO:
          * 写一个测试用例保证菜单元素默认是隐藏的。你需要分析 html 和 css
          * 来搞清楚我们是怎么实现隐藏/展示菜单元素的。
@@ -60,10 +61,17 @@ $(function() {
          * 测试应该包含两个 expectation ： 党点击图标的时候菜单是否显示，
          * 再次点击的时候是否隐藏。
          */
+        it('点击菜单，改变菜单状态', function () {
+            menuIconLink.trigger('click');
+            expect(body.hasClass('menu-hidden')).toBe(false);
+
+            menuIconLink.trigger('click');
+            expect(body.hasClass('menu-hidden')).toBe(true);
+        });
     });
 
     /* TODO: 13. 写一个叫做 "Initial Entries" 的测试用例 */
-
+    
         /* TODO:
          * 写一个测试保证 loadFeed 函数被调用而且工作正常，即在 .feed 容器元素
          * 里面至少有一个 .entry 的元素。

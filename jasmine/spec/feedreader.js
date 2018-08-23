@@ -7,6 +7,7 @@
  * 我们得保证在 DOM 准备好之前他们不会被运行。
  */
 $(function() {
+    "use strict";
     /* 这是我们第一个测试用例 - 其中包含了一定数量的测试。这个用例的测试
      * 都是关于 Rss 源的定义的，也就是应用中的 allFeeds 变量。
     */
@@ -45,17 +46,21 @@ $(function() {
 
 
     /* TODO: 写一个叫做 "The menu" 的测试用例 */
-
+    describe('The menu',function () {
+        var body = $('body');
         /* TODO:
          * 写一个测试用例保证菜单元素默认是隐藏的。你需要分析 html 和 css
          * 来搞清楚我们是怎么实现隐藏/展示菜单元素的。
          */
-
-         /* TODO:
-          * 写一个测试用例保证当菜单图标被点击的时候菜单会切换可见状态。这个
-          * 测试应该包含两个 expectation ： 党点击图标的时候菜单是否显示，
-          * 再次点击的时候是否隐藏。
-          */
+        it('菜单元素默认是隐藏的', function () {
+            expect(body.hasClass('menu-hidden')).toBe(true);
+        });
+        /* TODO:
+         * 写一个测试用例保证当菜单图标被点击的时候菜单会切换可见状态。这个
+         * 测试应该包含两个 expectation ： 党点击图标的时候菜单是否显示，
+         * 再次点击的时候是否隐藏。
+         */
+    });
 
     /* TODO: 13. 写一个叫做 "Initial Entries" 的测试用例 */
 

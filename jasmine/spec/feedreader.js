@@ -92,9 +92,32 @@ $(function() {
     });
 
     /* TODO: 写一个叫做 "New Feed Selection" 的测试用例 */
-
+    describe('New Feed Selection', function () {
+        var feed = $('.feed');
+        var oldContent,newContent;
+        var originalTimeout;
+        beforeEach(function (done) {
+            originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+            jasmine.DEFAULT_TIMEOUT_INTERVAL = 12000;
+            loadFeed(1, function () {
+                oldContent = feed.html();
+                loadFeed(0, function () {
+                    newContent = feed.html();
+                    done();
+                });
+            });
+        });
         /* TODO:
          * 写一个测试保证当用 loadFeed 函数加载一个新源的时候内容会真的改变。
          * 记住，loadFeed() 函数是异步的。
          */
+        it('loadFeed 函数加载一个新源的时候内容会真的改变', function (done) {
+            expect(oldContent).not.toBe(newContent);
+            done();
+        });
+
+        afterEach(function () {
+            jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+        });
+    });
 }());
